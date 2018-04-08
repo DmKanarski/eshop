@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="60">
+    <Properties>
+        <Property name="log-path">applogs</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console-Appender" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>
+                    %d{yyyy.MM.dd HH.mm.ss} [%-5p]:[%-16t][%10.30c{1}] - %m %throwable %n
+                </pattern>>
+            </PatternLayout>
+        </Console>
+        <File name="App-File-Appender" fileName="E:/log/app_log5.log" >
+            <PatternLayout>
+                <pattern>
+                    %d{yyyy.MM.dd HH.mm.ss} [%-5p]:[%-16t][%10.30c{1}] - %m %throwable %n
+                </pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <!--<Logger name="org.springframework" level="error">-->
+            <!--<AppenderRef ref="App-File-Appender"/>-->
+            <!--<AppenderRef ref="Console-Appender"/>-->
+        <!--</Logger>-->
+        <!--<Logger name="org.springframework" level="error">-->
+           <!--&lt;!&ndash; <AppenderRef ref="App-File-Appender"/>&ndash;&gt;-->
+            <!--<AppenderRef ref="Console-Appender"/>-->
+        <!--</Logger>-->
+        <!--<Logger name="by.kanarski" level="debug">-->
+            <!--<AppenderRef ref="App-File-Appender"/>-->
+            <!--<AppenderRef ref="Console-Appender"/>-->
+        <!--</Logger>-->
+        <Root level="debug">
+            <!--<AppenderRef ref="App-File-Appender"/>-->
+            <AppenderRef ref="Console-Appender"/>
+        </Root>
+    </Loggers>
+</Configuration>

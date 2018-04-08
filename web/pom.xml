@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>by.kanarski.eshop</groupId>
+    <artifactId>web</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <parent>
+        <groupId>by.kanarski</groupId>
+        <artifactId>eshop</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>by.kanarski.eshop</groupId>
+            <artifactId>dao</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>by.kanarski.eshop</groupId>
+            <artifactId>services</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+            <version>3.0.2.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.9.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <profiles>
+                        <profile>spring_boot_jar_spa</profile>
+                    </profiles>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+
+        <profile>
+            <id>spring_boot_jar_spa</id>
+            <activation>
+                <property>
+                    <name>spring_boot_jar_spa</name>
+                </property>
+            </activation>
+            <build>
+                <finalName>${project.parent.build.finalName}</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-maven-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.0.1</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${basedir}/target/classes/static</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>../ui</directory>
+                                            <excludes>
+                                                <exclude>**/node_modules/</exclude>
+                                                <exclude>**/target/</exclude>
+                                                <exclude>**/pom.xml</exclude>
+                                                <exclude>**/*.iml</exclude>
+                                            </excludes>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                        <!--<resource>-->
+                                        <!--<directory>src/main/resources/</directory>-->
+                                        <!--</resource>-->
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+    </profiles>
+
+</project>

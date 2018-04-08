@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Подтверждение email</title>
+</head>
+<body>
+    <div>
+        <div style="font-family:'Times New Roman',sans-serif">
+            Уважаемый Клиент, перейдите по ссылке для подтверждения email -
+            <b><a th:href="'mailto' + ${recipientEmail}" target="_blank" th:text="${recipientEmail}"></a></b><br>
+            <a th:href="${confirmationUrl}"
+               target="_blank" th:text="${confirmationUrl}">
+            </a><br>
+            <p style="font-size:12px">
+                Если вы не подтверждали/изменяли адрес электронной почты, проигнорируйте это письмо.<br>
+                Это сообщение отправлено с электронного адреса, используемого только для уведомлений. Входящая почта на него не принимается. Не отвечайте на это письмо
+            </p>
+            <br>
+            <!--<img style="display:block;margin-left:0" src="profito_logo.jpg" th:src="|cid:${logo|">-->
+        </div>
+    </div>
+</body>
+</html>
